@@ -6,12 +6,7 @@ module.exports = {
     res.send("hello");
   },
   registerUser: async (req, res) => {
-    let user = {
-      firstName: "TestFName",
-      lastName: "TestLName",
-      email: "test@mail.com",
-      password: "testPassword",
-    };
+    let user = req.body
     let salt = await bcrypt.genSalt(10);
     let userPassword = user.password;
     let password = await bcrypt.hash(userPassword, salt);
@@ -42,10 +37,13 @@ module.exports = {
       });
     });
   },
-  getUser: (req, res) => {
+  getOneUserByEmail: (req, res) => {
+    let email = req.body.email;
+    User.findOne({ email: email }).then( user => res.json(user))
+  },
+  getUsers: (req, res) => {
       User.find().then( response => {
-          console.log(response)
-          res.sendStatus(200)
+          res.json(response)
       })
   }
 };

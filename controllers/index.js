@@ -4,5 +4,6 @@ module.exports = {
     getFirstRoute: authFunctions.getFirstRoute,
     registerUser: authFunctions.registerUser,
     loginUser: authFunctions.loginUser,
-    getUser: authFunctions.getUser
+    getOneUser: authFunctions.getOneUserByEmail,
+    getUsers: authFunctions.getUsers
 }

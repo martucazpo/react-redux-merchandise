@@ -5,12 +5,13 @@ router.route('/')
     .get(controllers.getFirstRoute)
 
 router.route('/auth/registerUser')
-    .get(controllers.registerUser);
+    .post(controllers.registerUser);
 
 router.route('/auth/loginUser')
-    .get(controllers.loginUser);
+    .post(controllers.loginUser);
 
 router.route('/auth/user')
-    .get(controllers.getUser);
+    .get(controllers.getUsers)
+    .post(controllers.getOneUser)
     
 module.exports = router
