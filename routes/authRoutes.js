@@ -13,5 +13,7 @@ router.route('/auth/loginUser')
 router.route('/auth/user')
     .get(controllers.getUsers)
     .post(controllers.getOneUser)
+//router.route('/auth/getUser')
+    
     
 module.exports = router

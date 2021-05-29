@@ -1,0 +1,3 @@
+export const LOGIN_USER = 'LOGIN_USER';
+export const REGISTER_USER = 'REGISTER_USER';
+export const GET_USER_BY_EMAIL = 'GET_USER_BY_EMAIL'

@@ -6,29 +6,28 @@ module.exports = {
     res.send("hello");
   },
   registerUser: async (req, res) => {
-    let user = req.body
+    let user = req.body;
     let salt = await bcrypt.genSalt(10);
     let userPassword = user.password;
     let password = await bcrypt.hash(userPassword, salt);
     user.password = password;
     let hashedUser = new User(user);
     hashedUser.save().then((response) => {
-      console.log(response);
-      res.send("success");
+      res.json(response);
     });
   },
   loginUser: (req, res) => {
-    let email = "test@mail.com";
-    let password = "testPassword";
+    let { email, password } = req.body
     User.findOne({ email }).then((response) => {
       let dbPassword = response.password;
+      let email = response.email
       bcrypt.compare(password, dbPassword, (err, data) => {
         if (err) {
           console.log(err);
         } else {
           if (data) {
             console.log("login success ", data);
-            res.sendStatus(200);
+            res.json({ email });
           } else {
             console.log("passwords do not match");
             res.sendStatus(401);
@@ -39,11 +38,11 @@ module.exports = {
   },
   getOneUserByEmail: (req, res) => {
     let email = req.body.email;
-    User.findOne({ email: email }).then( user => res.json(user))
+    User.findOne({ email: email }).then((user) => res.json(user));
   },
   getUsers: (req, res) => {
-      User.find().then( response => {
-          res.json(response)
-      })
-  }
+    User.find().then((response) => {
+      res.json(response);
+    });
+  },
 };

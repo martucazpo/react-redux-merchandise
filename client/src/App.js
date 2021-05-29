@@ -1,12 +1,15 @@
 import React from "react";
+import { connect } from 'react-redux';
 import {
   registerOneUser,
   loginOneUser,
-  getOneUser,
   getAllUsers,
 } from "./utils/API";
+import { registerThisUser } from './utils/redux/actions/authActions';
+//import { registerAndGetAUser } from './utils/redux/actions/authFunctions';
 
-const App = () => {
+const App = (props) => {
+  console.log(props)
   let user = {
     firstName: "MyTestUser",
     lastName: "MyTestUlserLastName",
@@ -18,11 +21,11 @@ const App = () => {
     password: "catsaresmelly",
   };
   const registerUser = async (oneUser) => {
-    let email = oneUser.email;
-    await registerOneUser(oneUser).then(getOneUser({ email }));
+    registerOneUser(oneUser, props.dispatch)
+    props.dispatch(registerThisUser())
   };
   const loginUser = (login) => {
-    loginOneUser(login);
+    loginOneUser(login, props.dispatch);
   };
   const whoAreUsers = () => {
     getAllUsers();
@@ -36,4 +39,10 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    auth : state.auth
+  }
+}
+
+export default connect(mapStateToProps)(App);
