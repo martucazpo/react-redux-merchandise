@@ -5,5 +5,5 @@ module.exports = {
     registerUser: authFunctions.registerUser,
     loginUser: authFunctions.loginUser,
     getOneUser: authFunctions.getOneUserByEmail,
-    getUsers: authFunctions.getUsers
+    getUserWithToken: authFunctions.getUserWithToken
 }

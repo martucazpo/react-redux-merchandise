@@ -1,5 +1,6 @@
 const User = require("../../database/models").User;
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken")
 
 module.exports = {
   getFirstRoute: async (req, res) => {
@@ -38,11 +39,24 @@ module.exports = {
   },
   getOneUserByEmail: (req, res) => {
     let email = req.body.email;
-    User.findOne({ email: email }).then((user) => res.json(user));
+    User.findOne({ email: email }).then((user) => jwt.sign({user}, 'catsstink', (err, token)=> {
+      if(err){
+        console.log(err)
+        res.sendStatus(403)
+      }else{
+        res.json({token})
+      }
+    }));
   },
-  getUsers: (req, res) => {
-    User.find().then((response) => {
-      res.json(response);
-    });
+  getUserWithToken: (req, res) => {
+    let token = req.body.token;
+    jwt.verify( token, 'catsstink', (err, data) => {
+      if(err){
+        console.log("ERR ", err)
+        res.sendStatus(403)
+      } else {
+        res.json(data)
+      }
+    })
   },
 };

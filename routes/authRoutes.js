@@ -11,8 +11,10 @@ router.route('/auth/loginUser')
     .post(controllers.loginUser);
 
 router.route('/auth/user')
-    .get(controllers.getUsers)
     .post(controllers.getOneUser)
+
+router.route('/auth/token')
+    .post(controllers.getUserWithToken)
 //router.route('/auth/getUser')
     
     
