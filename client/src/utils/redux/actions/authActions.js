@@ -1,4 +1,4 @@
-import { REGISTER_USER, GET_USER_BY_EMAIL, LOGIN_USER } from '../types';
+import { REGISTER_USER, GET_USER_BY_EMAIL, LOGIN_USER, LOGGOUT_USER } from '../types';
 
 
 export const getUser = (data) => {
@@ -18,6 +18,13 @@ export const registerThisUser = (payload)=> {
 export const loginThisUser = (payload) => {
     return {
         type: LOGIN_USER,
+        payload
+    }
+}
+
+export const loggoutThisUser = (payload) => {
+    return {
+        type: LOGGOUT_USER,
         payload
     }
 }
