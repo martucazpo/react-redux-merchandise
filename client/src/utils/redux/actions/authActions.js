@@ -8,16 +8,16 @@ export const getUser = (data) => {
         }
 }
 
-export const registerThisUser = ()=> {
+export const registerThisUser = (payload)=> {
     return {
         type: REGISTER_USER,
-        payload: true
+        payload
     }
 }
 
-export const loginThisUser = (user) => {
+export const loginThisUser = (payload) => {
     return {
         type: LOGIN_USER,
-        payload: user
+        payload
     }
 }

@@ -17,14 +17,14 @@ const authReducer = (state = initialState, action) => {
         case REGISTER_USER:
             return {
                 ...state,
-                isLoading: false
+                isLoading: false,
+                isAuth: action.payload
             };
         case LOGIN_USER:
             return {
                 ...state,
                 isLoadin: false,
-                isAuth: true,
-                user: action.payload
+                isAuth: action.payload
             }
         default:
             return state;
