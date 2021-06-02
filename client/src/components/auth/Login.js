@@ -5,6 +5,7 @@ import {
   loginThisUser,
   sendServerMsg,
 } from "../../utils/redux/actions/authActions";
+import RegistrationBtn from './RegistrationBtn';
 
 class Login extends React.Component {
   constructor(props) {
@@ -54,6 +55,7 @@ class Login extends React.Component {
             <button type="submit">LOGIN</button>
           </div>
         </form>
+        <RegistrationBtn />
       </div>
     );
   }

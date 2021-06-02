@@ -1,4 +1,4 @@
-import { REGISTER_USER, GET_USER_BY_EMAIL, LOGIN_USER, LOGGOUT_USER, REGISTER_MSG, SEND_SERVER_MSG } from '../types';
+import { REGISTER_USER, GET_USER_BY_EMAIL, LOGIN_USER, LOGGOUT_USER, REGISTER_MSG, SEND_SERVER_MSG, SHOW_LOGIN } from '../types';
 
 
 export const getUser = (payload) => {
@@ -38,6 +38,13 @@ export const sendRegisterMsg = (payload) => {
 export const sendServerMsg = (payload) => {
     return {
         type: SEND_SERVER_MSG,
+        payload
+    }
+}
+
+export const showLogin = (payload) => {
+    return {
+        type: SHOW_LOGIN,
         payload
     }
 }
