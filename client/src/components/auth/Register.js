@@ -5,6 +5,7 @@ import {
   sendRegisterMsg,
   sendServerMsg,
 } from "../../utils/redux/actions/authActions";
+import ModalOpenCloseTab from './ModalOpenCloseTab';
 
 class Register extends React.Component {
   constructor(props) {
@@ -66,6 +67,7 @@ class Register extends React.Component {
   render() {
     return (
       <div>
+        <ModalOpenCloseTab />
         <h3>Register</h3>
         <p>
           {this.props.auth.registerMsg !== "" && this.props.auth.registerMsg}

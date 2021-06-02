@@ -6,6 +6,7 @@ import {
   sendServerMsg,
 } from "../../utils/redux/actions/authActions";
 import RegistrationBtn from './RegistrationBtn';
+import ModalOpenCloseTab from './ModalOpenCloseTab';
 
 class Login extends React.Component {
   constructor(props) {
@@ -32,6 +33,7 @@ class Login extends React.Component {
   render() {
     return (
       <div>
+        <ModalOpenCloseTab />
         <h3>Login</h3>
         <p>{this.props.auth.serverMsg !== "" && this.props.auth.serverMsg}</p>
         <form onSubmit={this.handleSubmit}>

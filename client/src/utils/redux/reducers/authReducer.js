@@ -1,4 +1,4 @@
-import { GET_USER_BY_EMAIL, REGISTER_USER, LOGIN_USER, LOGGOUT_USER, REGISTER_MSG, SEND_SERVER_MSG, SHOW_LOGIN } from '../types';
+import { GET_USER_BY_EMAIL, REGISTER_USER, LOGIN_USER, LOGGOUT_USER, REGISTER_MSG, SEND_SERVER_MSG, SHOW_LOGIN, IS_LOGGING_IN } from '../types';
 
 let initialState = {
     user: [],
@@ -58,11 +58,16 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 isAuth: false,
                 serverMsg: action.payload
-            }
+            };
         case SHOW_LOGIN:
             return {
                 ...state,
                 showLogin: action.payload
+            };
+        case IS_LOGGING_IN:
+            return {
+                ...state,
+                isLoggingIn: action.payload
             }
         default:
             return state;
