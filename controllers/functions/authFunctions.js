@@ -1,6 +1,7 @@
 const User = require("../../database/models").User;
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
+const jwtSecret = process.env.JWT_SECRET;
 
 module.exports = {
   getFirstRoute: async (req, res) => {
@@ -8,26 +9,32 @@ module.exports = {
   },
   registerUser: async (req, res) => {
     let user = req.body;
-    let salt = await bcrypt.genSalt(10);
-    let userPassword = user.password;
-    let password = await bcrypt.hash(userPassword, salt);
-    user.password = password;
-    let hashedUser = new User(user);
-    hashedUser.save().then((response) => {
-      res.json(response);
+    let email = user.email;
+    User.findOne({ email }).then(async (response) => {
+      if (response !== null) {
+        res.json({ serverMsg: "This email is already in our records" });
+      } else if (response === null) {
+        let salt = await bcrypt.genSalt(10);
+        let userPassword = user.password;
+        let password = await bcrypt.hash(userPassword, salt);
+        user.password = password;
+        let hashedUser = new User(user);
+        hashedUser.save().then((response) => {
+          res.json(response);
+        });
+      }
     });
   },
   loginUser: (req, res) => {
-    let { email, password } = req.body
+    let { email, password } = req.body;
     User.findOne({ email }).then((response) => {
       let dbPassword = response.password;
-      let email = response.email
+      let email = response.email;
       bcrypt.compare(password, dbPassword, (err, data) => {
         if (err) {
           console.log(err);
         } else {
           if (data) {
-            console.log("login success ", data);
             res.json({ email });
           } else {
             console.log("passwords do not match");
@@ -39,24 +46,26 @@ module.exports = {
   },
   getOneUserByEmail: (req, res) => {
     let email = req.body.email;
-    User.findOne({ email: email }).then((user) => jwt.sign({user}, 'catsstink', (err, token)=> {
-      if(err){
-        console.log(err)
-        res.sendStatus(403)
-      }else{
-        res.json({token})
-      }
-    }));
+    User.findOne({ email: email }).then((user) =>
+      jwt.sign({ user }, jwtSecret, (err, token) => {
+        if (err) {
+          console.log(err);
+          res.sendStatus(403);
+        } else {
+          res.json({ token });
+        }
+      })
+    );
   },
   getUserWithToken: (req, res) => {
     let token = req.body.token;
-    jwt.verify( token, 'catsstink', (err, data) => {
-      if(err){
-        console.log("ERR ", err)
-        res.sendStatus(403)
+    jwt.verify(token, jwtSecret, (err, data) => {
+      if (err) {
+        console.log("ERR ", err);
+        res.sendStatus(403);
       } else {
-        res.json(data)
+        res.json(data);
       }
-    })
+    });
   },
 };
