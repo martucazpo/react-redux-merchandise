@@ -16,7 +16,7 @@ class ProtectedPage extends React.Component {
   }
   logOut(){
     window.localStorage.removeItem("token");
-    this.props.dispatch(loggoutThisUser(false))
+    this.props.dispatch(loggoutThisUser())
   }
   render() {
       console.log("FROM PP ", this.props)

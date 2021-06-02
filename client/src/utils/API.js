@@ -33,7 +33,12 @@ export const registerOneUser = (user) => {
 
 export const loginOneUser = (user) => {
   axios.post(`${BASE_URL}/auth/loginUser`, user).then((response) => {
-    let email = response.data.email;
-    getThisUser(email);
+    if (response.data.serverMsg) {
+      store.dispatch(sendServerMsg(response.data.serverMsg));
+    } else {
+      store.dispatch(registerThisUser(true))
+      let email = response.data.email;
+      getThisUser(email);
+    }
   });
 };

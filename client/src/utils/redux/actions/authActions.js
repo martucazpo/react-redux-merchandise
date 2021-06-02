@@ -22,10 +22,9 @@ export const loginThisUser = (payload) => {
     }
 }
 
-export const loggoutThisUser = (payload) => {
+export const loggoutThisUser = () => {
     return {
-        type: LOGGOUT_USER,
-        payload
+        type: LOGGOUT_USER
     }
 }
 

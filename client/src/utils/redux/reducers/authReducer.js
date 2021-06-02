@@ -3,11 +3,10 @@ import { GET_USER_BY_EMAIL, REGISTER_USER, LOGIN_USER, LOGGOUT_USER, REGISTER_MS
 let initialState = {
     user: [],
     isAuth: false,
-    isLoading: true,
-    isRegistered: true,
-    isLoggedIn: false,
+    isLoading: false,
+    isRegistered: false,
+    isLoggingIn: true,
     registerMsg: '',
-    loginMsg: '',
     serverMsg: ''
 }
 
@@ -16,8 +15,11 @@ const authReducer = (state = initialState, action) => {
         case GET_USER_BY_EMAIL:
             return {
                 ...state,
+                isLoadin: true,
                 user: action.payload,
-                isAuth: true
+                isAuth: true,
+                registerMsg: '',
+                serverMsg: ''
             };
         case REGISTER_USER:
             return {
@@ -37,8 +39,10 @@ const authReducer = (state = initialState, action) => {
         case LOGGOUT_USER:
             return {
                 ...state,
+                user: [],
                 serverMsg: '',
-                isAuth: action.payload
+                registerMsg: '',
+                isAuth: false,
             };
         case REGISTER_MSG:
             return {

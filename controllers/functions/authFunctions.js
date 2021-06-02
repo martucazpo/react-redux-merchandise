@@ -28,20 +28,23 @@ module.exports = {
   loginUser: (req, res) => {
     let { email, password } = req.body;
     User.findOne({ email }).then((response) => {
-      let dbPassword = response.password;
-      let email = response.email;
-      bcrypt.compare(password, dbPassword, (err, data) => {
-        if (err) {
-          console.log(err);
-        } else {
-          if (data) {
-            res.json({ email });
+      if (response === null) {
+        res.json({ serverMsg: "That email is not on our database" });
+      } else {
+        let dbPassword = response.password;
+        let email = response.email;
+        bcrypt.compare(password, dbPassword, (err, data) => {
+          if (err) {
+            console.log(err);
           } else {
-            console.log("passwords do not match");
-            res.sendStatus(401);
+            if (data) {
+              res.json({ email });
+            } else {
+              res.json({ serverMsg: "The passwords do not match" });
+            }
           }
-        }
-      });
+        });
+      }
     });
   },
   getOneUserByEmail: (req, res) => {
