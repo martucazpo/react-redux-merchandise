@@ -49,7 +49,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         serverMsg: "",
         isLoggingIn: false,
-        isLoadin: false,
+        isLoading: false,
         isAuth: action.payload,
       };
     case LOGGOUT_USER:
@@ -58,8 +58,7 @@ const authReducer = (state = initialState, action) => {
         user: [],
         serverMsg: "",
         registerMsg: "",
-        isAuth: false,
-        isLoggingIn: true,
+        isAuth: false
       };
     case REGISTER_MSG:
       return {
