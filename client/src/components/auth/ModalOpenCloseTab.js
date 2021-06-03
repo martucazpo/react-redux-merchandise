@@ -3,12 +3,14 @@ import { connect } from "react-redux";
 import {
   isLoginShowing,
   modalOpen,
+  loggingIn
 } from "../../utils/redux/actions/authActions";
 
 const ModalOpenCloseTab = (props) => {
   const toggleModal = () => {
     props.dispatch(modalOpen(false));
     props.dispatch(isLoginShowing(true));
+    props.dispatch(loggingIn(false))
   };
   const modalbtn = "\u2bbe";
   return (

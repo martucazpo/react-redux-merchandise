@@ -5,7 +5,7 @@ import NavLoginBtn from "./NavLoginBtn";
 const Navbar = (props) => {
   return (
     <nav style={{ backgroundColor: "pink", width: "100%", minHeight: "8vh" }}>
-      {props.auth.isAuth === false && props.auth.isModalOpen === false && (
+      {props.auth.isAuth === false && props.auth.isLoggingIn === false && (
         <NavLoginBtn />
       )}
     </nav>

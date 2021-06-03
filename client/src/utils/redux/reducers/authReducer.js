@@ -16,7 +16,7 @@ let initialState = {
   isAuth: false,
   isLoading: false,
   isRegistered: false,
-  isLoggingIn: true,
+  isLoggingIn: false,
   registerMsg: "",
   serverMsg: "",
   showLogin: false,
