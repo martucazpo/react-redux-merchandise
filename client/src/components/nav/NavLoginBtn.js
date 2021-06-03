@@ -1,17 +1,20 @@
-import React from 'react';
-import { connect } from 'react-redux'
-import { loggingIn } from '../../utils/redux/actions/authActions'
+import React from "react";
+import { connect } from "react-redux";
+import { loggingIn, modalOpen, isLoginShowing } from "../../utils/redux/actions/authActions";
 
 const NavLoginBtn = (props) => {
-    return (
-        <button onClick={()=>props.dispatch(loggingIn(true))}>LOG IN</button>
-    )
-}
+  const loginLogin = () => {
+    props.dispatch(loggingIn(true));
+    props.dispatch(modalOpen(true));
+    props.dispatch(isLoginShowing(true))
+  };
+  return <button onClick={loginLogin}>LOG IN</button>;
+};
 
-const mapStateToProps = ( state ) => {
-    return {
-        auth : state.auth
-    }
-}
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
+  };
+};
 
-export default connect(mapStateToProps)(NavLoginBtn)
+export default connect(mapStateToProps)(NavLoginBtn);

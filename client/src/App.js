@@ -9,7 +9,7 @@ const App = (props) => {
   console.log("APP PROPS ", props);
   return (
     <BrowserRouter>
-    <Navbar />
+      <Navbar />
       {!props.auth.isAuth ? (
         <Route exact path="/" component={InitialLanding} />
       ) : (

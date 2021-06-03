@@ -5,7 +5,7 @@ import {
   sendRegisterMsg,
   sendServerMsg,
 } from "../../utils/redux/actions/authActions";
-import ModalOpenCloseTab from './ModalOpenCloseTab';
+import ModalOpenCloseTab from "./ModalOpenCloseTab";
 
 class Register extends React.Component {
   constructor(props) {
@@ -41,10 +41,10 @@ class Register extends React.Component {
           password: this.state.password1,
         };
         registerOneUser(user);
-          this.setState({
-            ...this.state,
-            email: "",
-          });
+        this.setState({
+          ...this.state,
+          email: "",
+        });
       } else {
         let message = "Please review password requirements";
         this.props.dispatch(sendRegisterMsg(message));

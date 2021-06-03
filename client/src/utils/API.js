@@ -1,5 +1,9 @@
 import axios from "axios";
-import { getUser, sendServerMsg, registerThisUser } from "./redux/actions/authActions";
+import {
+  getUser,
+  sendServerMsg,
+  registerThisUser,
+} from "./redux/actions/authActions";
 import store from "./redux/store";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || process.env.BASE_URL;
@@ -24,7 +28,7 @@ export const registerOneUser = (user) => {
     if (response.data.serverMsg) {
       store.dispatch(sendServerMsg(response.data.serverMsg));
     } else {
-      store.dispatch(registerThisUser(true))
+      store.dispatch(registerThisUser(true));
       let email = response.data.email;
       getThisUser(email);
     }
@@ -36,7 +40,7 @@ export const loginOneUser = (user) => {
     if (response.data.serverMsg) {
       store.dispatch(sendServerMsg(response.data.serverMsg));
     } else {
-      store.dispatch(registerThisUser(true))
+      store.dispatch(registerThisUser(true));
       let email = response.data.email;
       getThisUser(email);
     }

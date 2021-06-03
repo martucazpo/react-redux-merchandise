@@ -5,8 +5,8 @@ import {
   loginThisUser,
   sendServerMsg,
 } from "../../utils/redux/actions/authActions";
-import RegistrationBtn from './RegistrationBtn';
-import ModalOpenCloseTab from './ModalOpenCloseTab';
+import RegistrationBtn from "./RegistrationBtn";
+import ModalOpenCloseTab from "./ModalOpenCloseTab";
 
 class Login extends React.Component {
   constructor(props) {

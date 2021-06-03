@@ -6,7 +6,7 @@ const InitialLanding = (props) => {
   console.log("PROPS ", props);
   return (
     <div>
-      {props.auth.isLoggingIn === true && props.auth.isAuth === false ? (
+      {props.auth.isModalOpen === true && props.auth.isAuth === false ? (
         <LoginRegistrationModal />
       ) : null}
     </div>

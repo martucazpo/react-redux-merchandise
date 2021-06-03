@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getUserFromToken } from "../../utils/API"
-import { loggoutThisUser } from '../../utils/redux/actions/authActions'
+import { getUserFromToken } from "../../utils/API";
+import { loggoutThisUser } from "../../utils/redux/actions/authActions";
 
 class ProtectedPage extends React.Component {
   constructor(props) {
@@ -14,12 +14,12 @@ class ProtectedPage extends React.Component {
       ? getUserFromToken(token, this.props.dispatch)
       : console.log("there is no token");
   }
-  logOut(){
+  logOut() {
     window.localStorage.removeItem("token");
-    this.props.dispatch(loggoutThisUser())
+    this.props.dispatch(loggoutThisUser());
   }
   render() {
-      console.log("FROM PP ", this.props)
+    console.log("FROM PP ", this.props);
     return (
       <div>
         <h1>Protected Page</h1>
